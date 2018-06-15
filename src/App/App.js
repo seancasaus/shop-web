@@ -9,7 +9,16 @@ class App extends Component {
   //built in react constructor, first called when class loads
   constructor(props) {
     super(props);
-    http.getProducts();
+    this.loadData = this.loadData.bind(this); //binded to loaddata 
+    this.loadData();
+  }
+
+  loadData = () => {
+    http.getProducts().then(products => { //then fulfills a promise
+      console.log(products);
+    }, err => {
+
+    });
   }
 
   render() {
