@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import HttpService from '../services/http-services'; //gets http service object from its' js file
+
+const http = new HttpService(); //new httpService object
 
 class App extends Component {
+  //built in react constructor, first called when class loads
+  constructor(props) {
+    super(props);
+    http.getProducts();
+  }
+
   render() {
     return (
       <div className="App">
