@@ -11,16 +11,36 @@ class App extends Component {
   //built in react constructor, first called when class loads
   constructor(props) {
     super(props);
-    this.loadData = this.loadData.bind(this); //binded to loaddata
+    this.state = {products:[]};
+
+    //bind functions
+    this.loadData = this.loadData.bind(this);
+    this.productList = this.productList.bind(this);
+
     this.loadData();
   }
 
   loadData = () => {
-    http.getProducts().then(products => { //then fulfills a promise
-      console.log(products);
+    var self = this; //reference to this before promise is loaded
+
+    http.getProducts().then(data => { //then fulfills a promise
+      //everytime setState is called, component and child components are reloaded, call setstate when want to refresh
+      self.setState({products: data});
     }, err => {
 
     });
+  }
+
+  productList = () => {
+    //goes through an array and returns to list
+    const list = this.state.products.map((product) =>
+      //create component for every item in aray form database
+      <div className="col-sm-4" key={product._id}>
+        <Product title={product.title} price={product.price} imgUrl={product.imgUrl}/>
+      </div>
+    );
+
+    return (list); //rendered list item
   }
 
   render() {
@@ -32,9 +52,7 @@ class App extends Component {
         </header>
         <div className="container App-main">
           <div className="row">
-            <Product className="col-sm-4" price="4.23" title="Toy Gun" imgUrl="http://americanlookout.com/wp-content/uploads/2017/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
-            <Product className="col-sm-4" price="4.23" title="Toy Gun" imgUrl="http://americanlookout.com/wp-content/uploads/2017/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
-            <Product className="col-sm-4" price="4.23" title="Toy Gun" imgUrl="http://americanlookout.com/wp-content/uploads/2017/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+            {this.productList()}
           </div>
         </div>
       </div>
