@@ -30,8 +30,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to the shop</h1>
         </header>
-        <div className="App-main">
-          <Product />
+        <div className="container App-main">
+          <div className="row">
+            <Product className="col-sm-4" price="4.23" title="Toy Gun" imgUrl="http://americanlookout.com/wp-content/uploads/2017/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+            <Product className="col-sm-4" price="4.23" title="Toy Gun" imgUrl="http://americanlookout.com/wp-content/uploads/2017/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+            <Product className="col-sm-4" price="4.23" title="Toy Gun" imgUrl="http://americanlookout.com/wp-content/uploads/2017/05/54ca62c3d99f0_-_waterguns-5.jpg"/>
+          </div>
         </div>
       </div>
     );
