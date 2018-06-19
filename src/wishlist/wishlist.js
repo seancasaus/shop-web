@@ -1,5 +1,7 @@
 import React, {Component} from 'react'; //importing Component from React package
 import './wishlist.css';
+import DataService from '../services/data-services';
+
 import ProductCondensed from '../product-condensed/product-condensed';
 
 //Create a class that inherits features from React Component
