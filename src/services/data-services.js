@@ -15,12 +15,13 @@ class DataService {
     return instance;
   }
 
-  addWishListItem = item => {
+  addWishListItem = (item) => {
     wishList.push(item);
+    console.log(wishList);
     ns.postNotification(NOTIF_WISHLIST_CHANGED, wishList); //used to interface with notification service
   }
 
-  removeWishListItem = item => {
+  removeWishListItem = (item) => {
     for (var x = 0; x < wishList.length; x++) {
       if(wishList[x]._id === item._id) {
         wishList.splice(x, 1);

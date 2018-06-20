@@ -1,34 +1,39 @@
 import React, {Component} from 'react'; //importing Component from React package
 import './wishlist.css';
 import DataService from '../services/data-services';
-import NotificationService from '../services/notification-service';
+import NotificationService, {NOTIF_WISHLIST_CHANGED} from '../services/notification-service';
 
 import ProductCondensed from '../product-condensed/product-condensed';
+
+let ns = new NotificationService();
 
 //Create a class that inherits features from React Component
 class WishList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {wishlist:[
-      {
-        title:"Hello World",
-        price:23.99,
-        _id:"fdfgdfgsfds"
-      },
-      {
-        title:"World Hellow",
-        price:54.99,
-        _id:"fdfgfdgfsfds"
-      },
-      {
-        title:"Hi bob",
-        price:19.99,
-        _id:"fdsfdfdsfds"
-      }
-    ]}
+    this.state = {wishlist:[]};
+
     //bind functions
     this.createWishList = this.createWishList.bind(this);
+    this.onWishListChanged = this.onWishListChanged.bind(this);
+  }
+
+  //add observer when compnent mounts
+  componentDidMount() {
+    console.log('got to compnent mount');
+    ns.addObserver(NOTIF_WISHLIST_CHANGED, this, this.onWishListChanged);
+  }
+
+  //remove observer when compnent unmounts
+  componentWillUnmount() {
+    ns.removeObserver(this, NOTIF_WISHLIST_CHANGED);
+  }
+
+  //reset renderer
+  onWishListChanged(newWishList) {
+    console.log('got to wishlist changed');
+    this.setState({wishList: newWishList})
   }
 
   createWishList = () => {
