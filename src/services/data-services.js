@@ -15,9 +15,18 @@ class DataService {
     return instance;
   }
 
+  itemOnWishList = item => {
+    for(var x = 0; x < wishList.length; x++) {
+      if(wishList[x]._id === item._id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   addWishListItem = (item) => {
     wishList.push(item);
-    console.log('Item added');
+    //console.log('Item added');
     ns.postNotification(NOTIF_WISHLIST_CHANGED, wishList); //used to interface with notification service
   }
 

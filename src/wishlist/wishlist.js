@@ -21,7 +21,7 @@ class WishList extends Component {
 
   //add observer when compnent mounts
   componentDidMount() {
-    console.log('got to compnent mount');
+    //console.log('got to compnent mount');
     ns.addObserver(NOTIF_WISHLIST_CHANGED, this, this.onWishListChanged);
   }
 
@@ -32,7 +32,7 @@ class WishList extends Component {
 
   //reset renderer
   onWishListChanged(newWishList) {
-    console.log('wishlist changed');
+    //console.log('wishlist changed');
     this.setState({wishList: newWishList})
   }
 

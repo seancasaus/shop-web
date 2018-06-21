@@ -15,7 +15,7 @@ class NotificationService {
   //used for notifying wishlist changes
   postNotification = (notifName, data) => {
     let obs = observers[notifName];
-    console.log('got to postNotif');
+    //console.log('notification posted');
 
     for(var x = 0; x < obs.length; x++) {
       var obj = obs[x];
@@ -38,7 +38,7 @@ class NotificationService {
   }
 
   addObserver = (notifName, observer, callBack) => {
-    console.log('observer added');
+    //console.log('observer added');
     let obs = observers[notifName];
 
     if(!obs) {
