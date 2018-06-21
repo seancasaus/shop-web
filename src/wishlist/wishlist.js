@@ -12,7 +12,7 @@ class WishList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {wishlist:[]};
+    this.state = {wishList:[]};
 
     //bind functions
     this.createWishList = this.createWishList.bind(this);
@@ -32,12 +32,12 @@ class WishList extends Component {
 
   //reset renderer
   onWishListChanged(newWishList) {
-    console.log('got to wishlist changed');
+    console.log('wishlist changed');
     this.setState({wishList: newWishList})
   }
 
   createWishList = () => {
-    const list = this.state.wishlist.map((product) =>
+    const list = this.state.wishList.map((product) =>
       <ProductCondensed product={product} key={product._id} />
     );
     return (list);

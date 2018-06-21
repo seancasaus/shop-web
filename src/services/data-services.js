@@ -17,7 +17,7 @@ class DataService {
 
   addWishListItem = (item) => {
     wishList.push(item);
-    console.log(wishList);
+    console.log('Item added');
     ns.postNotification(NOTIF_WISHLIST_CHANGED, wishList); //used to interface with notification service
   }
 
